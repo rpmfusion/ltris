@@ -1,12 +1,9 @@
-# $Id: ltris.spec,v 1.1 2008/10/18 14:01:05 thl Exp $
-# Authority: matthias
-
 %define desktop_vendor rpmforge
 
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.12
-Release: 2.fc8
+Release: 3%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
@@ -82,7 +79,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
-* Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.0.12-2.fc8
+* Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.0.12-3
 - rebuild for RPM Fusion
 
 * Mon Mar 31 2008 Matthias Saou <http://freshrpms.net/> 1.0.12-1
