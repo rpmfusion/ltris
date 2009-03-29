@@ -3,7 +3,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.12
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
@@ -79,6 +79,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.0.12-4
+- rebuild for new F11 features
+
 * Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.0.12-3
 - rebuild for RPM Fusion
 
