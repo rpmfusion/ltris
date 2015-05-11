@@ -1,16 +1,15 @@
-%define desktop_vendor rpmforge
-
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.0.12
-Release: 7%{?dist}
+Version: 1.0.19
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
 Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
+Patch1: ltris-1.0.19-inlines.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.4, SDL_mixer
-BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils, ImageMagick
+BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils
 
 %description
 LTris as a tetris clone which means you have a bowl with blocks falling down.
@@ -24,41 +23,23 @@ CPU(!) compete and send completed lines to each other.
 
 %prep
 %setup
+%patch1 -p1
 
 
 %build
+autoreconf -fiv
 %configure --localstatedir=%{_var}/lib/games
 %{__make} %{?_smp_mflags}
-# Having it as png seems more consistent
-convert icons/ltris48.xpm ltris.png
 
 
 %install
-%{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
-%{__install} -D -p ltris.png %{buildroot}%{_datadir}/pixmaps/ltris.png
-
-%{__cat} > %{name}.desktop << EOF
-[Desktop Entry]
-Name=LTris
-Comment=Tetris clone
-Exec=ltris
-Icon=ltris.png
-Terminal=false
-Type=Application
-Categories=Application;Game;
-Encoding=UTF-8
-EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
+desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
-
-
-%clean
-%{__rm} -rf %{buildroot}
 
 
 %post
@@ -72,13 +53,22 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
 %attr(2551, root, games) %{_bindir}/ltris
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/ltris48.gif
 %{_datadir}/ltris/
-%{_datadir}/pixmaps/ltris.png
 %config(noreplace) %attr(664, root, games) %{_localstatedir}/lib/games/ltris.hscr
 
 
 %changelog
+* Mon May 11 2015 Sérgio Basto <sergio@serjux.com> - 1.0.19-1
+- Update to 1.0.19 .
+- Added inlines.patch that fix FTBFS on F22 rfbz #3623.
+- Added autoreconf -fiv .
+- Added and use .desktop file and ltris icon from sources.
+- Removed BR ImageMagick and convert comand to generate icon.
+- Removed snipset that generate .desktop file.
+- Clean spec file.
+
 * Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 1.0.12-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
