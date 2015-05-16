@@ -1,3 +1,17 @@
+Fix warnings like:
+tools.h:57:13: warning: inline function 'delay_force_time_out' declared but never defined
+ inline void delay_force_time_out( Delay *delay );
+             ^
+tools.h:54:12: warning: inline function 'delay_timed_out' declared but never defined
+ inline int delay_timed_out( Delay *delay, int ms );
+            ^
+tools.h:51:13: warning: inline function 'delay_reset' declared but never defined
+ inline void delay_reset( Delay *delay );
+ 
+Which ends up with this king of errors:
+/builddir/build/BUILD/ltris-1.0.19/src/bowl.c:1353: undefined reference to `delay_timed_out'
+/builddir/build/BUILD/ltris-1.0.19/src/bowl.c:1311: undefined reference to `delay_force_time_out'
+
 diff -rup ltris-1.0.19.orig/src/sdl.h ltris-1.0.19/src/sdl.h
 --- ltris-1.0.19.orig/src/sdl.h	2013-05-03 18:13:11.000000000 +0100
 +++ ltris-1.0.19/src/sdl.h	2015-05-11 18:54:37.949653509 +0100
