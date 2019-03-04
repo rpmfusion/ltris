@@ -9,7 +9,7 @@ Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
 Patch1: ltris-1.0.19-inlines.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.4, SDL_mixer
-BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils
+BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils, gcc
 
 %description
 LTris as a tetris clone which means you have a bowl with blocks falling down.
