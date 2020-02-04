@@ -1,7 +1,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.19
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
@@ -60,6 +60,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Feb 04 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.19-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.19-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
