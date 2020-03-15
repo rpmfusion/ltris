@@ -1,13 +1,13 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.19
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
 Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
 Patch1: ltris-1.0.19-inlines.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Source2:  %{name}.appdata.xml
 Requires: SDL >= 1.1.4, SDL_mixer
 BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils, gcc
 
@@ -29,11 +29,11 @@ CPU(!) compete and send completed lines to each other.
 %build
 autoreconf -fiv
 %configure --localstatedir=%{_var}/lib/games
-%{__make} %{?_smp_mflags}
+%make_build
 
 
 %install
-%{__make} install DESTDIR=%{buildroot}
+%make_install
 %find_lang %{name}
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -41,25 +41,23 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
-
-%post
-update-desktop-database %{_datadir}/applications &>/dev/null || :
-
-%postun
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+install -m 0644 -D %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 
 %files -f %{name}.lang
-%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
 %attr(2551, root, games) %{_bindir}/ltris
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/ltris48.gif
 %{_datadir}/ltris/
 %config(noreplace) %attr(664, root, games) %{_localstatedir}/lib/games/ltris.hscr
+%{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Sun Mar 15 2020 Sérgio Basto <sergio@serjux.com> - 1.0.19-9
+- Add appdata and cleanups
+
 * Tue Feb 04 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.19-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
