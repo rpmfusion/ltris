@@ -1,15 +1,23 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.19
-Release: 10%{?dist}
-License: GPL
-Group: Amusements/Games
+Release: 11%{?dist}
+License: GPLv2+
+
 URL: http://lgames.sourceforge.net/
 Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
-Patch1: ltris-1.0.19-inlines.patch
 Source2:  %{name}.appdata.xml
-Requires: SDL >= 1.1.4, SDL_mixer
-BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils, gcc
+
+Patch0: ltris-1.0.19-inlines.patch
+
+BuildRequires: desktop-file-utils
+BuildRequires: gcc
+BuildRequires: libappstream-glib
+BuildRequires: SDL-devel
+BuildRequires: SDL_mixer-devel
+
+Requires: SDL >= 1.1.4
+Requires: SDL_mixer
 
 %description
 LTris as a tetris clone which means you have a bowl with blocks falling down.
@@ -22,8 +30,7 @@ CPU(!) compete and send completed lines to each other.
 
 
 %prep
-%setup
-%patch1 -p1
+%autosetup -p1
 
 
 %build
@@ -34,7 +41,6 @@ autoreconf -fiv
 
 %install
 %make_install
-%find_lang %{name}
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
@@ -43,9 +49,13 @@ desktop-file-install \
 
 install -m 0644 -D %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
+
+%find_lang %{name}
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING ChangeLog README TODO
+%doc AUTHORS ChangeLog README TODO
+%license COPYING
 %attr(2551, root, games) %{_bindir}/ltris
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/ltris48.gif
@@ -55,6 +65,11 @@ install -m 0644 -D %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Thu Sep 10 2020 Leigh Scott <leigh123linux@gmail.com> - 1.0.19-11
+- Fix and vailidate appdata
+- Fix licence
+- Update spec file
+
 * Tue Aug 18 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.19-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
