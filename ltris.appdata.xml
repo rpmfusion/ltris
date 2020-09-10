@@ -39,7 +39,7 @@
   <update_contact>ltris maintainer - kulkanie@gmx.net</update_contact>
   <content_rating type="oars-1.1"/>
     <releases>
-       <release version="1.0.19" date="2013-10-29"/>
+       <release version="1.2.1" date="2020-07-28"/>
   </releases>
 </component>
 
