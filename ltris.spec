@@ -1,7 +1,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.2.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 
 URL: http://lgames.sourceforge.net/
@@ -49,7 +49,7 @@ desktop-file-install \
 
 install -m 0644 -D %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
+appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 %find_lang %{name}
 
@@ -65,11 +65,14 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.appdat
 
 
 %changelog
+* Thu Sep 17 2020 Leigh Scott <leigh123linux@gmail.com> - 1.2.1-2
+- Fix appdata
+
 * Thu Sep 10 2020 Leigh Scott <leigh123linux@gmail.com> - 1.2.1-1
 - Update to 1.2.1
 
 * Thu Sep 10 2020 Leigh Scott <leigh123linux@gmail.com> - 1.0.19-11
-- Fix and vailidate appdata
+- Fix and validate appdata
 - Fix licence
 - Update spec file
 

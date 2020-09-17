@@ -23,7 +23,7 @@
           your CPU playing while enjoying a cup of tea!  
       </p>
   </description>
-  <launchable type="desktop-id">smplayer.desktop</launchable>
+  <launchable type="desktop-id">ltris.desktop</launchable>
   <url type="homepage">http://lgames.sourceforge.net/</url>
   <screenshots>
     <screenshot type="default">
