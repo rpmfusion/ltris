@@ -1,0 +1,21 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -7,7 +7,7 @@
+ desktopdir = $(datadir)/applications
+ desktop_DATA = ltris.desktop
+ icondir = $(datadir)/icons
+-icon_DATA = ltris48.gif
++icon_DATA = ltris.png
+ 
+ AUTOMAKE_OPTIONS = foreign
+ 
+@@ -15,7 +15,7 @@
+ # the right way to handle it? At least it works... as long as $datadir
+ # does not contain plus signs. :-)
+ ltris.desktop:
+-	@sed -e "s+Icon=+Icon=$(datadir)/icons/ltris48.gif+" \
++	@sed -e "s+Icon=+Icon=ltris+" \
+ 	< ltris.desktop.in > ltris.desktop
+ 
+ ACLOCAL_AMFLAGS = -I m4
+

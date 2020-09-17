@@ -1,7 +1,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.2.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2+
 
 URL: http://lgames.sourceforge.net/
@@ -9,9 +9,11 @@ Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
 Source2:  %{name}.appdata.xml
 
 Patch0: fix_sdl_test.patch
+Patch1: icon_fix.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
+BuildRequires: ImageMagick
 BuildRequires: libappstream-glib
 BuildRequires: SDL-devel
 BuildRequires: SDL_mixer-devel
@@ -31,6 +33,7 @@ CPU(!) compete and send completed lines to each other.
 
 %prep
 %autosetup -p1
+convert ltris48.gif ltris.png
 
 
 %build
@@ -58,13 +61,16 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 %license COPYING
 %attr(2551, root, games) %{_bindir}/ltris
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/ltris48.gif
+%{_datadir}/icons/ltris.png
 %{_datadir}/ltris/
 %config(noreplace) %attr(664, root, games) %{_localstatedir}/lib/games/ltris.hscr
 %{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Thu Sep 17 2020 Leigh Scott <leigh123linux@gmail.com> - 1.2.1-3
+- Fix icon and desktop file
+
 * Thu Sep 17 2020 Leigh Scott <leigh123linux@gmail.com> - 1.2.1-2
 - Fix appdata
 
