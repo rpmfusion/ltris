@@ -1,15 +1,15 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.2.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2+
 
 URL: http://lgames.sourceforge.net/
 Source: http://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
-Source2:  %{name}.appdata.xml
 
 Patch0: fix_sdl_test.patch
 Patch1: icon_fix.patch
+Patch2: ltris_b607a8d..b73e996.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
@@ -50,7 +50,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
-install -m 0644 -D %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.appdata.xml
+install -m 0644 -D ltris.appdata.xml %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
@@ -68,6 +68,10 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Sun May 09 2021 Sérgio Basto <sergio@serjux.com> - 1.2.2-3
+- Bug fixing "stats should only be shown for one bowl games" and appdata was upstreamed
+  https://sourceforge.net/p/lgames/bugs/85/
+
 * Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.2.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
