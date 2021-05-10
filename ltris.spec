@@ -9,7 +9,7 @@ Source: http://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 
 Patch0: fix_sdl_test.patch
 Patch1: icon_fix.patch
-Patch2: ltris_b607a8d..b73e996.patch
+Patch2: ltris_b607a8d..b73e996.v2.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
