@@ -1,7 +1,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.2.2
-Release: 3%{?dist}
+Version: 1.2.3
+Release: 1%{?dist}
 License: GPLv2+
 
 URL: http://lgames.sourceforge.net/
@@ -9,7 +9,6 @@ Source: http://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 
 Patch0: fix_sdl_test.patch
 Patch1: icon_fix.patch
-Patch2: ltris_b607a8d..b73e996.v2.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
@@ -68,6 +67,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Mon Aug 02 2021 Sérgio Basto <sergio@serjux.com> - 1.2.3-1
+- Update to 1.2.3
+
 * Sun May 09 2021 Sérgio Basto <sergio@serjux.com> - 1.2.2-3
 - Bug fixing "stats should only be shown for one bowl games" and appdata was upstreamed
   https://sourceforge.net/p/lgames/bugs/85/
