@@ -1,6 +1,6 @@
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.2.4
+Version: 1.2.5
 Release: 1%{?dist}
 License: GPLv2+
 
@@ -67,6 +67,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Fri Jul 15 2022 Leigh Scott <leigh123linux@gmail.com> - 1.2.5-1
+- Update ltris to 1.2.5
+
 * Wed Apr 20 2022 Sérgio Basto <sergio@serjux.com> - 1.2.4-1
 - Update ltris to 1.2.4
 
