@@ -12,7 +12,6 @@ Patch1: icon_fix.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
-BuildRequires: ImageMagick
 BuildRequires: libappstream-glib
 BuildRequires: SDL-devel
 BuildRequires: SDL_mixer-devel
@@ -32,7 +31,7 @@ CPU(!) compete and send completed lines to each other.
 
 %prep
 %autosetup -p1
-convert ltris48.gif ltris.png
+mv ltris128.png ltris.png
 
 
 %build
