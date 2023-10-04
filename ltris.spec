@@ -1,7 +1,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.2.6
-Release: 2%{?dist}
+Version: 1.2.7
+Release: 1%{?dist}
 License: GPLv2+
 
 URL: https://lgames.sourceforge.net/
@@ -31,7 +31,6 @@ CPU(!) compete and send completed lines to each other.
 
 %prep
 %autosetup -p1
-mv ltris128.png ltris.png
 
 
 %build
@@ -43,13 +42,7 @@ autoreconf -fiv
 %install
 %make_install
 
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install \
-    --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
-
 install -m 0644 -D ltris.appdata.xml %{buildroot}%{_metainfodir}/%{name}.appdata.xml
-
 appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 %find_lang %{name}
@@ -66,6 +59,9 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Wed Oct 04 2023 Sérgio Basto <sergio@serjux.com> - 1.2.7-1
+- Update ltris to 1.2.7
+
 * Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.2.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 

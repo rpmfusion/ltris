@@ -1,21 +1,17 @@
---- a/Makefile.am
-+++ b/Makefile.am
-@@ -7,7 +7,7 @@
- desktopdir = $(datadir)/applications
- desktop_DATA = ltris.desktop
- icondir = $(datadir)/icons
--icon_DATA = ltris128.png
-+icon_DATA = ltris.png
+--- ltris-1.2.7/Makefile.am.orig	2023-10-04 01:55:10.271766701 +0100
++++ ltris-1.2.7/Makefile.am	2023-10-04 01:55:34.559743827 +0100
+@@ -8,12 +8,12 @@ CROSSCOMPILE ltris.appdata.xml
+ install-data-local:
+ 	$(mkinstalldirs) $(DESTDIR)$(datadir)/icons/hicolor/apps
+ 	$(mkinstalldirs) $(DESTDIR)$(datadir)/applications
+-	$(INSTALL_DATA) ltris48.png $(DESTDIR)$(datadir)/icons/hicolor/apps/ltris.png
++	$(INSTALL_DATA) ltris48.png $(DESTDIR)$(datadir)/icons/ltris.png
+ 	$(INSTALL_DATA) ltris.desktop $(DESTDIR)$(datadir)/applications
+ 	
  
- AUTOMAKE_OPTIONS = foreign
- 
-@@ -15,7 +15,7 @@
- # the right way to handle it? At least it works... as long as $datadir
- # does not contain plus signs. :-)
- ltris.desktop:
--	@sed -e "s+Icon=+Icon=$(datadir)/icons/ltris128.png+" \
-+	@sed -e "s+Icon=+Icon=ltris+" \
- 	< ltris.desktop.in > ltris.desktop
+ uninstall-local:
+-	rm $(DESTDIR)$(datadir)/icons/hicolor/apps/ltris.png
++	rm $(DESTDIR)$(datadir)/icons/ltris.png
+ 	rm $(DESTDIR)$(datadir)/applications/ltris.desktop
  
  ACLOCAL_AMFLAGS = -I m4
-
