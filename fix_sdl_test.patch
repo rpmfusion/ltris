@@ -1,12 +1,11 @@
 --- a/configure.ac
 +++ b/configure.ac
-@@ -12,7 +12,7 @@
- AC_PROG_CC
- AC_PROG_RANLIB
+@@ -15,7 +15,7 @@ AC_PROG_RANLIB
+ # Checks for libraries.
+ AC_CHECK_LIB(SDL, main,, AC_MSG_ERROR(lib SDL is needed))
  
 -CFLAGS="$CFLAGS -Wall -Wno-int-conversion -Wno-format -Wno-implicit-function-declaration"
 +CFLAGS="$CFLAGS -Wall -Wno-int-conversion -Wno-implicit-function-declaration"
  
  dnl Check Zarus install
  AC_ARG_ENABLE( zaurus,
-
