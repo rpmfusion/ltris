@@ -1,14 +1,13 @@
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.3
-Release: 2%{?dist}
+Version: 1.3.2
+Release: 1%{?dist}
 License: GPLv2+
 
 URL: https://lgames.sourceforge.net/
 Source: https://download.sourceforge.net/lgames/%{name}-%{version}.tar.gz
 
 Patch0: fix_sdl_test.patch
-Patch1: icon_fix.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: gcc
@@ -42,6 +41,7 @@ autoreconf -fiv
 %install
 %make_install
 
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -m 0644 -D ltris.appdata.xml %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
@@ -50,15 +50,18 @@ appstream-util validate --nonet %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog README TODO
 %license COPYING
-%attr(2551, root, games) %{_bindir}/ltris
+%attr(0755, root, games) %{_bindir}/ltris
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/ltris.png
+%{_datadir}/icons/hicolor/48x48/apps/ltris.png
 %{_datadir}/ltris/
 %config(noreplace) %attr(664, root, games) %{_localstatedir}/lib/games/ltris.hscr
 %{_metainfodir}/%{name}.appdata.xml
 
 
 %changelog
+* Mon Aug 05 2024 Leigh Scott <leigh123linux@gmail.com> - 1.3.2-1
+- Update to 1.3.2
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
